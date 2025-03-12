@@ -1808,5 +1808,6 @@ return {
 	makeplaceholder=makeplaceholder,
 	emptyfunction=emptyfunction,
 	stopreanimate=stopreanimate,
-	reanimate=reanimate
+	reanimate=reanimate,
+	pdloadedtime=pdloadedtime
 }
