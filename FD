@@ -1847,5 +1847,11 @@ return {
 	makeplaceholder=makeplaceholder,
 	emptyfunction=emptyfunction,
 	stopreanimate=stopreanimate,
-	reanimate=reanimate
+	reanimate=reanimate,
+	insSet=insSet,
+	insGet=insGet,
+	cfMul=cfMul,
+	cfGet=cfGet,
+	v3Get=v3Get,
+	cfAdd=cfAdd
 }
