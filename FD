@@ -131,6 +131,18 @@ local Inverse=cfGet(cf_0,"Inverse")
 local Lerp=cfGet(cf_0,"Lerp")
 local Clerp=Lerp
 
+local allowshiftlock=allowshiftlock or false
+local ctrltp=ctrltp or false
+local placeholders=placeholders or false
+local clickfling=clickfling or false
+local highlightflingtargets=highlightflingtargets or false
+local discharscripts=discharscripts or false
+local flingchangestate=flingchangestate or 3
+local respawntp=respawntp or 3
+local breakjointsmethod=breakjointsmethod or 1
+local simrad=simrad or false
+local hidedeatheffect=hidedeatheffect or false
+local norespawn=norespawn or false
 
 local accessorylimbs={
 	{meshid="117287001096396",textureid="",C0=cf_0,Name="Left Arm"},
@@ -251,9 +263,6 @@ local makeplaceholder=function(v)
 	return v
 end
 local emptyfunction=function() end
-
-
-
 
 local c=nil
 local stopreanimate=function() 
