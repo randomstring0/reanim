@@ -1823,5 +1823,6 @@ return {
 	insSet=insSet,
 	insGet=insGet,
 	cfMul=cfMul,
-	cfAdd=cfAdd
+	cfAdd=cfAdd,
+	Lerp=Lerp
 }
