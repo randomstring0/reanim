@@ -1812,6 +1812,8 @@ local reanimate=function()
 	}
 end
 
+if typeof(pd)=="function" then pd() end
+
 return {
 	accessorylimbs=accessorylimbs,
 	reanimate=reanimate,
