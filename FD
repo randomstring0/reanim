@@ -1818,5 +1818,10 @@ return {
 	accessorylimbs=accessorylimbs,
 	reanimate=reanimate,
 	stopreanimate=stopreanimate,
-	makeplaceholder=makeplaceholder
+	makeplaceholder=makeplaceholder,
+	mouse=mouse,
+	insSet=insSet,
+	insGet=insGet,
+	cfMul=cfMul,
+	cfAdd=cfAdd
 }
