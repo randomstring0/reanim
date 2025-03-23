@@ -1812,7 +1812,7 @@ local reanimate=function()
 	}
 end
 
-if typeof(pd)=="function" then pd() end
+
 
 return {
 	accessorylimbs=accessorylimbs,
@@ -1824,5 +1824,6 @@ return {
 	insGet=insGet,
 	cfMul=cfMul,
 	cfAdd=cfAdd,
-	Lerp=Lerp
+	Lerp=Lerp,
+	pd=pd
 }
