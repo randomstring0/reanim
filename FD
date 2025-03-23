@@ -1,16 +1,17 @@
-local allowshiftlock=true
-local ctrltp=false
-local placeholders=true
-local clickfling=false
-local highlightflingtargets=true
-local discharscripts=false
-local flingchangestate=3
-local respawntp=3
-local breakjointsmethod=1
-local simrad=false
-local hidedeatheffect=true
-local permadeath=true
+local config=_G.Config or {}
 
+local allowshiftlock=config.allowshiftlock or false
+local ctrltp=config.ctrltp or false
+local placeholders=config.placeholders or false
+local clickfling=config.clickfling or false
+local highlightflingtargets=config.highlightflingtargets or false
+local discharscripts=config.discharscripts or false
+local flingchangestate=config.flingchangestate or 1
+local respawntp=config.respawntp or 1
+local breakjointsmethod=config.breakjointsmethod or 1
+local simrad=config.simrad or false
+local hidedeatheffect=config.hidedeatheffect or false
+local permadeath=config.permadeath or false
 
 local osclock=os.clock
 local tspawn=task.spawn
@@ -227,7 +228,7 @@ local makeplaceholder=function(v)
 	insSet(v,"Name",rs())
 	insSet(v,"Anchored",true)
 	insSet(v,"CanCollide",false)
-	insSet(v,"Transparency",0.55)
+	insSet(v,"Transparency",0.61435)
 	return v
 end
 local emptyfunction=function() end
