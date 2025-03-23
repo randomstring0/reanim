@@ -235,8 +235,7 @@ local emptyfunction=function() end
 
 
 if permadeath then
-	if replicatesignal and not _G.cons then
-		_G.cons=true
+	if replicatesignal then
 		pd=function()
 			replicatesignal(cdsb)
 			pdloadedtime=osclock()+rst
