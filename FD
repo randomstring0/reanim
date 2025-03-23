@@ -142,6 +142,7 @@ local IsKeyDown=insGet(uis,"IsKeyDown")
 local Inverse=cfGet(cf_0,"Inverse")
 local Lerp=cfGet(cf_0,"Lerp")
 
+local pd=nil
 
 
 local accessorylimbs = {
@@ -232,37 +233,39 @@ local makeplaceholder=function(v)
 end
 local emptyfunction=function() end
 
-if permadeath and replicatesignal then
-    replicatesignal(cdsb)
-    pdloadedtime = osclock() + rst
-    local lastc = nil
-    local hdied = function()
-        if not c then
-            replicatesignal(cdsb)
-            pdloadedtime = osclock() + rst
-        end
-    end
-    Connect(
-        GetPropertyChangedSignal(lp, "Character"),
-        function()
-            local c = lp.Character
-            if c and c ~= lastc then
-                lastc = c
-                replicatesignal(cdsb)
-                pdloadedtime = osclock() + rst
-                while lastc == c do
-                    local h = FindFirstChildOfClass(c, "Humanoid")
-                    if h then
-                        Connect(insGet(h, "Died"), hdied)
-                        break
-                    end
-                    Wait(preanimation)
-                end
-            end
-        end
-    )
-end
 
+if permadeath then
+	if replicatesignal and not _G.cons then
+		_G.cons=true
+		pd=function()
+			replicatesignal(cdsb)
+			pdloadedtime=osclock()+rst
+			local lastc=nil
+			local hdied=function()
+				if not c then
+					replicatesignal(cdsb)
+					pdloadedtime=osclock()+rst
+				end
+			end
+			Connect(GetPropertyChangedSignal(lp,"Character"),function()
+				local c=lp.Character
+				if c and c~=lastc then
+					lastc=c
+					replicatesignal(cdsb)
+					pdloadedtime=osclock()+rst
+					while lastc==c do
+						local h=FindFirstChildOfClass(c,"Humanoid")
+						if h then
+							Connect(insGet(h,"Died"),hdied)
+							break
+						end
+						Wait(preanimation)
+					end
+				end
+			end)
+		end
+	end
+end
 
 
 local c=nil
@@ -1823,5 +1826,6 @@ return {
 	insGet=insGet,
 	cfMul=cfMul,
 	cfAdd=cfAdd,
-	Lerp=Lerp
+	Lerp=Lerp,
+	pd=pd
 }
