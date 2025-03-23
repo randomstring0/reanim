@@ -235,11 +235,9 @@ local emptyfunction=function() end
 
 
 if permadeath then
-	if replicatesignal then
+	if replicatesignal and not _G.cons then
+		_G.cons=true
 		pd=function()
-			if _G.cons then
-				Disconnect(_G.cons)
-			end
 			replicatesignal(cdsb)
 			pdloadedtime=osclock()+rst
 			local lastc=nil
@@ -249,7 +247,7 @@ if permadeath then
 					pdloadedtime=osclock()+rst
 				end
 			end
-			_G.cons=Connect(GetPropertyChangedSignal(lp,"Character"),function()
+			Connect(GetPropertyChangedSignal(lp,"Character"),function()
 				local c=lp.Character
 				if c and c~=lastc then
 					lastc=c
