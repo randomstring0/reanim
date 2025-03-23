@@ -236,33 +236,31 @@ local emptyfunction=function() end
 
 if permadeath then
 	if replicatesignal then
-		pd=function()
-			replicatesignal(cdsb)
-			pdloadedtime=osclock()+rst
-			local lastc=nil
-			local hdied=function()
-				if not c then
-					replicatesignal(cdsb)
-					pdloadedtime=osclock()+rst
+		replicatesignal(cdsb)
+		pdloadedtime=osclock()+rst
+		local lastc=nil
+		local hdied=function()
+			if not c then
+				replicatesignal(cdsb)
+				pdloadedtime=osclock()+rst
+			end
+		end
+		pd=Connect(GetPropertyChangedSignal(lp,"Character"),function()
+			local c=lp.Character
+			if c and c~=lastc then
+				lastc=c
+				replicatesignal(cdsb)
+				pdloadedtime=osclock()+rst
+				while lastc==c do
+					local h=FindFirstChildOfClass(c,"Humanoid")
+					if h then
+						Connect(insGet(h,"Died"),hdied)
+						break
+					end
+					Wait(preanimation)
 				end
 			end
-			Connect(GetPropertyChangedSignal(lp,"Character"),function()
-				local c=lp.Character
-				if c and c~=lastc then
-					lastc=c
-					replicatesignal(cdsb)
-					pdloadedtime=osclock()+rst
-					while lastc==c do
-						local h=FindFirstChildOfClass(c,"Humanoid")
-						if h then
-							Connect(insGet(h,"Died"),hdied)
-							break
-						end
-						Wait(preanimation)
-					end
-				end
-			end)
-		end
+		end)
 	end
 end
 
@@ -273,6 +271,9 @@ local stopreanimate=function()
 		c=nil
 		if replicatesignal then
 			replicatesignal(cdsb)
+			if pd then
+				Disconnect(pd)
+			end
 		end
 		return true
 	end
@@ -1825,6 +1826,5 @@ return {
 	insGet=insGet,
 	cfMul=cfMul,
 	cfAdd=cfAdd,
-	Lerp=Lerp,
-	pd=pd
+	Lerp=Lerp
 }
