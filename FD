@@ -170,25 +170,20 @@ local accessorylimbs = {
     { meshid = "3030546036", textureid = "3650191503", C0 = angles(1.5272, pi / 2, 0) * cf(0.125, -0.3, 0), Name = "Right Arm" },
     { meshid = "90736849096372", textureid = "", C0 = angles(0, 0, pi / 2), Name = "Left Arm" },
     { meshid = "4489232754", textureid = "4489233876", C0 = angles(0, 0, pi / 2), Name = "Left Arm" },
-    { meshid = "105141400603933", textureid = "", C0 = angles(0, 0, pi / 2), Name = "Right Arm" },
-    { meshid = "4094864753", textureid = "4094881938", C0 = angles(0, 0, pi / 2), Name = "Left Leg" },
-    { meshid = "4154474745", textureid = "4154474807", C0 = angles(0, 0, pi / 2), Name = "Right Leg" },
-    { meshid = "11263221350", textureid = "11263219250", C0 = angles(-pi / 2, 0, pi / 2), Name = "Right Leg" },
-    { meshid = "11159370334", textureid = "11159284657", C0 = angles(pi / 2, 0, pi / 2), Name = "Left Leg" },
     { meshid = "17374767929", textureid = "", C0 = angles(pi / 2, 0, pi / 2), Name = "Left Arm" },
-    { meshid = "11159370334", textureid = "11159285454", C0 = angles(pi / 2, 0, pi / 2), Name = "Left Leg" },
-    { meshid = "110684113028749", textureid = "", C0 = cf_0, Name = "Torso" },
-    { meshid = "11601535857", textureid = "", C0 = angles(0, pi, 0), Name = "Head" },
     { meshid = "12344206657", textureid = "", C0 = angles(2, 0, 0), Name = "Right Arm" },
     { meshid = "12344207333", textureid = "", C0 = angles(2, 0, 0), Name = "Left Arm" },
     { meshid = "14255522247", textureid = "", C0 = angles(pi / 2, 0, pi / 2), Name = "Left Leg" },
     { meshid = "13058343355", textureid = "", C0 = angles(0, pi, 0), Name = "Head" },
     { meshid = "4819720316", textureid = "4819722776", C0 = angles(0, 0, math.rad(15)), Name = "Torso" },
-    { meshid = "17387586286", textureid = "", C0 = angles(pi / 2, 0, pi / 2), Name = "Left Leg" },
-    { meshid = "3030546036", textureid = "3409604993", C0 = angles(-1.6144, pi / 2, 0) * cf(0.125, 0.3, 0), Name = "Right Leg" },
     { meshid = "3030546036", textureid = "3360978739", C0 = angles(-1.6144, -pi / 2, 0) * cf(-0.125, 0.3, 0), Name = "Left Leg" },
-    { meshid = "139733645770094", textureid = "", C0 = angles(0, 0, pi / 2), Name = "Left Leg" }
+    { meshid = "126825022897778", textureid = "125975972015302", C0 = cf_0, Name = "Torso" },
+    { meshid = "137702817952968", textureid = "135650240593878", C0 = angles(0, 0, pi / 2), Name = "Left Arm" },
+    { meshid = "137702817952968", textureid = "73798034827573", C0 = angles(0, 0, pi / 2), Name = "Right Leg" },
+    { meshid = "137702817952968", textureid = "135650240593878", C0 = angles(0, 0, pi / 2), Name = "Right Arm" },
+    { meshid = "137702817952968", textureid = "73798034827573", C0 = angles(0, 0, pi / 2), Name = "Left Leg" },
 }
+
 
 
 
