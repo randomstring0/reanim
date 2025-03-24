@@ -109,6 +109,8 @@ local GetChildren=insGet(game,"GetChildren")
 local GetDescendants=insGet(game,"GetDescendants")
 local IsDescendantOf=insGet(game,"IsDescendantOf")
 local GetPropertyChangedSignal=insGet(game,"GetPropertyChangedSignal")
+local FindFirstChild=insGet(game,"FindFirstChild")
+
 
 --findfirstchildofclass faster than getservice
 local plrs=FindFirstChildOfClass(game,"Players")
@@ -117,6 +119,7 @@ local ws=FindFirstChildOfClass(game,"Workspace")
 local uis=FindFirstChildOfClass(game,"UserInputService")
 local gs=FindFirstChildOfClass(game,"GuiService")
 local sg=FindFirstChildOfClass(game,"StarterGui")
+local rps=FindFirstChildOfClass(game,"ReplicatedStorage")
 local lp=insGet(plrs,"LocalPlayer")
 local pg=FindFirstChildOfClass(lp,"PlayerGui")
 local mouse=insGet(lp,"GetMouse")(lp)
@@ -248,6 +251,10 @@ local emptyfunction=function() end
 local c=nil
 if permadeath then
 	if replicatesignal then
+		if FindFirstChild(rps, "01_server") then
+			respawntp=2
+			breakjointsmethod=3
+		end
 		replicatesignal(cdsb)
 		pdloadedtime=osclock()+rst
 		local lastc=nil
