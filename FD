@@ -183,7 +183,13 @@ local accessorylimbs = {
     { meshid = "117287001096396", textureid = "120169691545791", C0 = cf_0, Name = "Left Leg" },
     { meshid = "125405780718494", textureid = "136752500636691", C0 = angles(0, 0, pi / 2), Name = "Right Leg" },
     { meshid = "125405780718494", textureid = "136752500636691", C0 = angles(0, 0, pi / 2), Name = "Left Leg" },
+    { meshid = "126825022897778", textureid = "", C0 = cf_0, Name = "Torso" },
+    { meshid = "", textureid = "73798034827573", C0 = angles(0, 0, pi / 2), Name = "Left Leg" },
+    { meshid = "", textureid = "73798034827573", C0 = angles(0, 0, pi / 2), Name = "Right Leg" },
+    { meshid = "", textureid = "135650240593878", C0 = angles(0, 0, pi / 2), Name = "Left Arm" },
+    { meshid = "", textureid = "135650240593878", C0 = angles(0, 0, pi / 2), Name = "Right Arm" }
 }
+
 
 
 
