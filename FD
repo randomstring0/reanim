@@ -245,7 +245,7 @@ local makeplaceholder=function(v)
 end
 local emptyfunction=function() end
 
-
+local c=nil
 if permadeath then
 	if replicatesignal then
 		replicatesignal(cdsb)
@@ -277,7 +277,7 @@ if permadeath then
 end
 
 
-local c=nil
+
 local stopreanimate=function() 
 	if c then
 		c=nil
