@@ -12,6 +12,7 @@ local breakjointsmethod=config.breakjointsmethod or 1
 local simrad=config.simrad or false
 local hidedeatheffect=config.hidedeatheffect or false
 local permadeath=config.permadeath or false
+local mfling=config.fling or false
 
 local osclock=os.clock
 local tspawn=task.spawn
@@ -1144,7 +1145,7 @@ local reanimate=function()
 	end)
 
 	local predictionfling=function(target)
-		if not c then
+		if not c or not mfling then
 			return false
 		end
 		if typeof(target)~="Instance" then 
