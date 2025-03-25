@@ -829,14 +829,13 @@ local reanimate=function()
 							end
 						end
 						local alive=true
-						local startcf=cf(v3Get(pos,"X"),fpdh+0.15,v3Get(pos,"Z"))*angles(0.6109,0,0)
+						local startcf=cf(v3Get(pos,"X"),fpdh+0.14965,v3Get(pos,"Z"))*angles(0.6109,0,0)
+						twait(.2)
 						tspawn(function()
 							while alive do
 								insSet(newhum,"Sit",true)
 								insSet(hrp,"RotVelocity",v3_0)
 								insSet(hrp,"Velocity",v3(0,12.514,0))
-								insSet(hrp,"AssemblyLinearVelocity",v3_0)
-								insSet(hrp,"AssemblyAngularVelocity",v3_0)
 								insSet(hrp,"CFrame",startcf)
 								twait()
 							end
