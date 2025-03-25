@@ -829,21 +829,22 @@ local reanimate=function()
 							end
 						end
 						local alive=true
-						local hrppos=insGet(hrp,"CFrame")
-						local pos=cf(hrppos.X,ws.FallenPartsDestroyHeight+0.15,hrppos.Z)
-						insSet(newhum,"Sit",true)
-						twait(.2)
+						local startcf=cf(v3Get(pos,"X"),fpdh+0.15,v3Get(pos,"Z"))*angles(0.6109,0,0)
 						tspawn(function()
 							while alive do
-								insSet(hrp,"RotVelocity",Vector3.zero)
-								insSet(hrp,"Velocity",v3(0,12.5,0))
-								insSet(hrp,"CFrame",pos*angles(math.rad(35),0,0))
+								insSet(newhum,"Sit",true)
+								insSet(hrp,"RotVelocity",v3_0)
+								insSet(hrp,"Velocity",v3(0,12.514,0))
+								insSet(hrp,"AssemblyLinearVelocity",v3_0)
+								insSet(hrp,"AssemblyAngularVelocity",v3_0)
+								insSet(hrp,"CFrame",startcf)
 								twait()
 							end
 						end)
 						Connect(insGet(newhum,"Died"),function()
 							alive=false
 						end)
+						twait(0.17)
 					end
 					if newc~=c then
 						return
