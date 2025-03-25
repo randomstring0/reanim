@@ -848,7 +848,7 @@ local reanimate=function()
 					end
 					if pdloadedtime then
 						if (osclock()<pdloadedtime) then
-							IF respawntp==4 then
+							if respawntp==4 then
 								twait(.44)
 							else
 								twait(pdloadedtime-osclock())
