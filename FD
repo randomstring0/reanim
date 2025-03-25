@@ -844,7 +844,6 @@ local reanimate=function()
 						Connect(insGet(newhum,"Died"),function()
 							alive=false
 						end)
-						twait(0.17)
 					end
 					if newc~=c then
 						return
