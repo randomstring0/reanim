@@ -708,6 +708,7 @@ local reanimate=function()
 						end
 					end
 					local hrp=timegp(newc,"HumanoidRootPart","BasePart",10)
+					local newhum=FindFirstChildOfClass(newc,"Humanoid")
 					if not (hrp and c and IsDescendantOf(newc,ws)) then return end
 					c=newc
 					local fi,fv=next(flingtable)
@@ -813,6 +814,30 @@ local reanimate=function()
 								break
 							end
 						end
+					elseif respawntp==4 then
+						for i,c in next, GetChildren(c) do
+							if IsA(c,"Accoutrement") then
+								if sethiddenproperty then
+									sethiddenproperty(c,"BackendAccoutrementState",0)
+								end
+							end
+						end
+						local alive=true
+						local hrppos=insGet(hrp,"CFrame")
+						local pos=cf(hrppos.X,ws.FallenPartsDestroyHeight+0.15,hrppos.Z)
+						insSet(newhum,"Sit",true)
+						twait(.2)
+						tspawn(function()
+							while alive do
+								insSet(hrp,"RotVelocity",Vector3.zero)
+								insSet(hrp,"Velocity",v3(0,12.5,0))
+								insSet(hrp,"CFrame",pos*angles(math.rad(35),0,0))
+								twait()
+							end
+						end)
+						Connect(insGet(newhum,"Died"),function()
+							alive=false
+						end)
 					end
 					if newc~=c then
 						return
@@ -1833,8 +1858,6 @@ local reanimate=function()
 		setHipHeight=setHipHeight
 	}
 end
-
-
 
 return {
 	accessorylimbs=accessorylimbs,
