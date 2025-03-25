@@ -815,6 +815,9 @@ local reanimate=function()
 							end
 						end
 					elseif respawntp==4 then
+						if pdloadedtime then
+							pdloadedtime=osclock()+rst
+						end
 						for i,c in next, GetChildren(c) do
 							if IsA(c,"Accoutrement") then
 								if sethiddenproperty then
@@ -848,11 +851,7 @@ local reanimate=function()
 					end
 					if pdloadedtime then
 						if (osclock()<pdloadedtime) then
-							if respawntp==4 then
-								twait(.44)
-							else
-								twait(pdloadedtime-osclock())
-							end
+							twait(pdloadedtime-osclock())
 						end
 						pdloadedtime=nil
 					end
