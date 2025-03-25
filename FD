@@ -256,6 +256,9 @@ if permadeath then
 			respawntp=2
 			breakjointsmethod=3
 		end
+		if respawntp==4 then
+			mfling=false
+		end
 		replicatesignal(cdsb)
 		pdloadedtime=osclock()+rst
 		local lastc=nil
