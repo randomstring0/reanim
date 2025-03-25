@@ -829,7 +829,7 @@ local reanimate=function()
 							end
 						end
 						local alive=true
-						local startcf=cf(v3Get(pos,"X"),fpdh+25.4965,v3Get(pos,"Z"))*angles(0.6109,0,0)
+						local startcf=cf(v3Get(pos,"X"),fpdh+1.1965,v3Get(pos,"Z"))*angles(0.6109,0,0)
 						twait(.2)
 						tspawn(function()
 							while alive do
