@@ -855,6 +855,14 @@ do
 			RigHumanoidRootPart = Rig.HumanoidRootPart
 			Rig.Parent = Workspace
 
+			if _G.part then
+				for i,v in pairs(_G.part) do
+					if typeof(v) == "Instance" then
+						v.Parent = Rig
+					end
+				end
+			end
+
 			for Index, Descendant in next, GetDescendants(Rig) do
 				if IsA(Descendant, "Attachment") then
 					Attachments[Descendant.Name] = Descendant
