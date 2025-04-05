@@ -1033,3 +1033,9 @@ Empyrean = Start({
 	SimulationRadius = 2147483647,
 	TeleportRadius = 12,
 })
+
+return {
+	Rig = Empyrean.Rig,
+	Fling = Empyrean.Fling,
+	BindableEvent = BindableEvent
+}
