@@ -1006,12 +1006,13 @@ local hatlist = {
 		{ MeshId = "4819720316", Name = "Torso", Offset = CFrame.Angles(0, 0, -0.249), TextureId = "4819722776" },--4819740796
 	}
 
-local adds = _G.accessory or {}
+if _G.accessory then
+	local adds = _G.accessory or {}
 
-for i,v in pairs(adds) do
-	tableinsert(hatlist,v)
+	for i,v in pairs(adds) do
+		tableinsert(hatlist,v)
+	end
 end
-
 Empyrean = Start({
 	Accessories = hatlist,
 	ApplyDescription = true,
