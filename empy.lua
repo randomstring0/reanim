@@ -952,8 +952,7 @@ do
 	end
 end
 
-Empyrean = Start({
-	Accessories = {
+local hatlist = {
 		--{ MeshId = "", Name = "", Offset = CFrame.identity, TextureId = "" },
 		
 		{ MeshId = "12344207333", Names = { "Left Arm", "Right Arm" }, Offset = CFrame.Angles(- 2.094, 0, 0), TextureId = "12344207341" },--12344545199
@@ -1005,7 +1004,16 @@ Empyrean = Start({
 		{ MeshId = "14241018198", Name = "Torso", Offset = CFrame.identity, TextureId = "14251599953" },--14255528083
 		{ MeshId = "110684113028749", Name = "Torso", Offset = CFrame.identity, TextureId = "70661572547971" },--138364679836274
 		{ MeshId = "4819720316", Name = "Torso", Offset = CFrame.Angles(0, 0, -0.249), TextureId = "4819722776" },--4819740796
-	},
+	}
+
+local adds = _G.accessory or {}
+
+for i,v in pairs(adds) do
+	tableinsert(hatlist,v)
+end
+
+Empyrean = Start({
+	Accessories = hatlist,
 	ApplyDescription = true,
 	BreakJointsDelay = 0.251,
 	ClickFling = false,
