@@ -1010,7 +1010,7 @@ if _G.accessory then
 	local adds = _G.accessory or {}
 
 	for i,v in pairs(adds) do
-		tableinsert(hatlist,v)
+		table.insert(hatlist,v)
 	end
 end
 Empyrean = Start({
