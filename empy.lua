@@ -1,6 +1,13 @@
 -- Made by @emperrrr (Discord)
 -- Discord server: https://discord.gg/UJ7YtqadPJ
 
+local config = _G.Config or {}
+
+local HatCollide = config.HatCollide or false
+local ReClaim = config.ReClaim or false
+local HideChar = config.HideCharacter or false
+
+
 do
 	local Accessories = {}
 
@@ -963,26 +970,26 @@ end
 local hatlist = {
 	--{ MeshId = "", Name = "", Offset = CFrame.identity, TextureId = "" },
 
-	{ MeshId = "3030546036", Name = "Right Arm", Offset = CFrame.Angles(-1.6144, -math.pi/2, 0) * CFrame.new(0.125, 0.3, 0), TextureId = "3443321249" },
+	--{ MeshId = "3030546036", Name = "Right Arm", Offset = CFrame.Angles(-1.6144, -math.pi/2, 0) * CFrame.new(0.125, 0.3, 0), TextureId = "3443321249" },
 	{ MeshId = "14255522247", Name = "Right Leg", Offset = CFrame.Angles(-math.pi/2, 0, math.pi/2), TextureId = "" },
 	{ MeshId = "99608462237958", Name = "Right Leg", Offset = CFrame.Angles(0, 0, math.pi/2), TextureId = "" },
-	{ MeshId = "3030546036", Name = "Left Leg", Offset = CFrame.Angles(1.5272, math.pi/2, 0) * CFrame.new(-0.125, -0.35, 0), TextureId = "3360974849" },
-	{ MeshId = "4819720316", Name = "Torso", Offset = CFrame.Angles(0, 0, 0.2618), TextureId = "4819722776" },
+	--{ MeshId = "3030546036", Name = "Left Leg", Offset = CFrame.Angles(1.5272, math.pi/2, 0) * CFrame.new(-0.125, -0.35, 0), TextureId = "3360974849" },
+	--{ MeshId = "4819720316", Name = "Torso", Offset = CFrame.Angles(0, 0, 0.2618), TextureId = "4819722776" },
 	{ MeshId = "12652772399", Name = "Right Leg", Offset = CFrame.new(0, -0.125, 0), TextureId = "12652775021" },
 	{ MeshId = "14768684979", Name = "Left Arm", Offset = CFrame.Angles(0, 0, math.pi/2), TextureId = "" },
 	{ MeshId = "4324138105", Name = "Left Arm", Offset = CFrame.Angles(-1.6144, math.pi/2, 0) * CFrame.new(-0.125, 0.3, 0), TextureId = "4324138210" },
-	{ MeshId = "4154474745", Name = "Left Arm", Offset = CFrame.Angles(1.5272, -math.pi/2, 0) * CFrame.new(-0.125, -0.3, 0), TextureId = "4154474807" },
+	--{ MeshId = "4154474745", Name = "Left Arm", Offset = CFrame.Angles(1.5272, -math.pi/2, 0) * CFrame.new(-0.125, -0.3, 0), TextureId = "4154474807" },
 	{ MeshId = "14241018198", Name = "Torso", Offset = CFrame.new(), TextureId = "" },
-	{ MeshId = "4324138105", Name = "Right Arm", Offset = CFrame.Angles(0, 0, math.pi/2), TextureId = "4391374782" },
+	--{ MeshId = "4324138105", Name = "Right Arm", Offset = CFrame.Angles(0, 0, math.pi/2), TextureId = "4391374782" },
 	{ MeshId = "17387586286", Name = "Right Leg", Offset = CFrame.Angles(-math.pi/2, 0, math.pi/2), TextureId = "" },
 	{ MeshId = "17387586286", Name = "Left Leg", Offset = CFrame.Angles(math.pi/2, 0, math.pi/2), TextureId = "" },
-	{ MeshId = "3030546036", Name = "Right Leg", Offset = CFrame.Angles(1.5272, -math.pi/2, 0) * CFrame.new(0.125, -0.35, 0), TextureId = "3033898741" },
+	--{ MeshId = "3030546036", Name = "Right Leg", Offset = CFrame.Angles(1.5272, -math.pi/2, 0) * CFrame.new(0.125, -0.35, 0), TextureId = "3033898741" },
 	{ MeshId = "13831073174", Name = "Left Arm", Offset = CFrame.new(0.017, 0, -0.23) * CFrame.Angles(-1.4835, -0.1571, 2.1991), TextureId = "" },
 	{ MeshId = "13421774668", Name = "Torso", Offset = CFrame.new(), TextureId = "" },
 	{ MeshId = "14768684979", Name = "Right Arm", Offset = CFrame.Angles(0, 0, math.pi/2), TextureId = "" },
 	{ MeshId = "17374767929", Name = "Right Arm", Offset = CFrame.Angles(-math.pi/2, 0, math.pi/2), TextureId = "" },
 	{ MeshId = "13839903766", Name = "Right Arm", Offset = CFrame.new(0, -0.62, -0.01) * CFrame.Angles(1.6581, 0.1571, -2.1991), TextureId = "" },
-	{ MeshId = "3030546036", Name = "Right Arm", Offset = CFrame.Angles(1.5272, math.pi/2, 0) * CFrame.new(0.125, -0.3, 0), TextureId = "3650191503" },
+	--{ MeshId = "3030546036", Name = "Right Arm", Offset = CFrame.Angles(1.5272, math.pi/2, 0) * CFrame.new(0.125, -0.3, 0), TextureId = "3650191503" },
 	{ MeshId = "90736849096372", Name = "Left Arm", Offset = CFrame.Angles(0, 0, math.pi/2), TextureId = "" },
 	{ MeshId = "4489232754", Name = "Left Arm", Offset = CFrame.Angles(0, 0, math.pi/2), TextureId = "4489233876" },
 	{ MeshId = "17374767929", Name = "Left Arm", Offset = CFrame.Angles(math.pi/2, 0, math.pi/2), TextureId = "" },
@@ -1006,13 +1013,23 @@ local hatlist = {
 	{ MeshId = "139733645770094", Name = "Left Leg", Offset = CFrame.Angles(0, 0, math.pi/2), TextureId = "" },
 	{ MeshId = "105141400603933", Name = "Right Arm", Offset = CFrame.Angles(0, 0, math.pi/2), TextureId = "" },
 	{ MeshId = "110684113028749", Name = "Torso", Offset = CFrame.new(), TextureId = "" },
-	{ MeshId = "3030546036", Name = "Left Leg", Offset = CFrame.Angles(-1.6144295580947547, -math.pi/2, 0) * CFrame.new(-0.125, 0.3, 0), TextureId = "3360978739" },
-	{ MeshId = "3030546036", Name = "Right Leg", Offset = CFrame.Angles(-1.6144295580947547, math.pi/2, 0) * CFrame.new(0.125, 0.3, 0), TextureId = "3409604993" },
+	--{ MeshId = "3030546036", Name = "Left Leg", Offset = CFrame.Angles(-1.6144295580947547, -math.pi/2, 0) * CFrame.new(-0.125, 0.3, 0), TextureId = "3360978739" },
+	--{ MeshId = "3030546036", Name = "Right Leg", Offset = CFrame.Angles(-1.6144295580947547, math.pi/2, 0) * CFrame.new(0.125, 0.3, 0), TextureId = "3409604993" },
 	{ MeshId = "18640899369", Name = "Torso", Offset = CFrame.new(), TextureId = "18640899481" },
 	{ MeshId = "18640914129", Name = "Left Arm", Offset = CFrame.new(), TextureId = "18640914168" },
 	{ MeshId = "18640901641", Name = "Right Leg", Offset = CFrame.new(), TextureId = "18640901676" },
 	{ MeshId = "18640914129", Name = "Right Arm", Offset = CFrame.new(), TextureId = "18640914168" },
 	{ MeshId = "18640901641", Name = "Left Leg", Offset = CFrame.new(), TextureId = "18640901676" },
+	{ MeshId = "4324138105", Name = "Left Arm", Offset = CFrame.Angles(-1.57, 0, -1.57) * CFrame.new(-0.125, 0, 0), TextureId = "4324138210" },
+	{ MeshId = "4154474745", Name = "Left Arm" , Offset = CFrame.Angles(-1.57, 0, -1.57) * CFrame.new(-0.125, -0, -0.53), TextureId = "4154474807" },
+	{ MeshId = "3030546036", Name = "Right Arm" , Offset = CFrame.Angles(-1.57, 0, 1.57) * CFrame.new(0.125, -0, 0), TextureId = "3650191503" },
+	{ MeshId = "3030546036", Name = "Right Arm" , Offset = CFrame.Angles(-1.57, 0, 1.57) * CFrame.new(0.125, 0, -0.53), TextureId = "3443321249" },
+	{ MeshId = "3030546036", Name = "Left Leg" , Offset = CFrame.Angles(-1.57, 0, -1.57) * CFrame.new(-0.125, -0, 0), TextureId = "3360974849" },
+	{ MeshId = "3030546036", Name = "Left Leg" , Offset = CFrame.Angles(-1.57, 0, -1.57) * CFrame.new(-0.125, -0, -0.53), TextureId = "3360978739" },
+	{ MeshId = "3030546036", Name = "Right Leg" , Offset = CFrame.Angles(-1.57, 0, 1.57) * CFrame.new(0.125, -0, 0), TextureId = "3033898741" },
+	{ MeshId = "3030546036", Name = "Right Leg" , Offset = CFrame.Angles(-1.57, 0, -1.57) * CFrame.new(0.125, 0, -0.53), TextureId = "3409604993" },
+	{ MeshId = "4819720316", Name = "Torso" , Offset = CFrame.Angles(0, 0, -0.25), TextureId = "4819722776" },
+
 }
 
 
@@ -1037,11 +1054,11 @@ Empyrean = Start({
 	DisableCharacterCollisions = true,
 	DisableHealthBar = true,
 	DisableRigCollisions = true,
-	HatDrop = false,
-	HideCharacter = true,
+	HatDrop = HatCollide,
+	HideCharacter = HideChar,
 	ParentCharacter = true,
 	PermanentDeath = true,
-	Refit = true,
+	Refit = ReClaim,
 	RigSize = 1,
 	RigTransparency = 1,
 	R15 = false,
