@@ -7,7 +7,6 @@ local HatCollide = config.HatCollide or false
 local ReClaim = config.ReClaim or false
 local HideChar = config.HideCharacter or false
 
-
 do
 	local Accessories = {}
 
@@ -32,6 +31,7 @@ do
 	local Custom = Enum.CameraType.Custom
 	local Health = Enum.CoreGuiType.Health
 	local HumanoidRigType = Enum.HumanoidRigType
+	local R6 = HumanoidRigType.R6
 	local Dead = Enum.HumanoidStateType.Dead
 	local LockCenter = Enum.MouseBehavior.LockCenter
 	local MouseButton1 = Enum.UserInputType.MouseButton1
@@ -67,7 +67,7 @@ do
 	local SetCoreGuiEnabled = StarterGui.SetCoreGuiEnabled
 	local Workspace = FindFirstChildOfClass(game, "Workspace")
 	local FallenPartsDestroyHeight = Workspace.FallenPartsDestroyHeight
-	local HatDropY = FallenPartsDestroyHeight - 0.7
+	local HatDropY = FallenPartsDestroyHeight - 0.3
 	local FindFirstChildWhichIsA = game.FindFirstChildWhichIsA
 	local UserInputService = FindFirstChildOfClass(game, "UserInputService")
 	local InputBegan = UserInputService.InputBegan
@@ -83,9 +83,10 @@ do
 	local Highlights = {}
 
 	local Instancenew = Instance.new
-	local Animation = Instancenew("Animation")
+	local R15Animation = Instancenew("Animation")
+	local R6Animation = Instancenew("Animation")
 	local HumanoidDescription = Instancenew("HumanoidDescription")
-	local HumanoidModel = CreateHumanoidModelFromDescription(Players, HumanoidDescription, HumanoidRigType.R6)
+	local HumanoidModel = CreateHumanoidModelFromDescription(Players, HumanoidDescription, R6)
 	local R15HumanoidModel = CreateHumanoidModelFromDescription(Players, HumanoidDescription, HumanoidRigType.R15)
 	local SetAccessories = HumanoidDescription.SetAccessories
 	local ModelBreakJoints = HumanoidModel.BreakJoints
@@ -115,9 +116,9 @@ do
 	local math = math
 	local mathrandom = math.random
 	local mathsin = math.sin
-	
+
 	local nan = 0 / 0
-	
+
 	local next = next
 
 	local OptionsAccessories = nil
@@ -179,13 +180,15 @@ do
 	local Vector3new = Vector3.new
 	local FlingVelocity = Vector3new(16384, 16384, 16384)
 	local HatDropLinearVelocity = Vector3new(0, 27, 0)
+	local HideCharacterOffset = Vector3new(0, 30, 0)
 	local Vector3one = Vector3.one
 	local Vector3xzAxis = Vector3new(1, 0, 1)
 	local Vector3zero = Vector3.zero
 	local AntiSleep = Vector3zero
 	
-	Animation.AnimationId = "rbxassetid://180436148"
-	
+	R15Animation.AnimationId = "rbxassetid://507767968"
+	R6Animation.AnimationId = "rbxassetid://180436148"
+
 	Humanoid = nil
 
 	Destroy(HumanoidDescription)
@@ -198,7 +201,7 @@ do
 			end
 		end
 	end
-	
+
 	local GetHandleFromTable = function(Table)
 		for Index, Child in GetChildren(Character) do
 			if IsA(Child, "Accoutrement") then
@@ -216,7 +219,7 @@ do
 
 						if SpecialMesh then
 							MeshId = SpecialMesh.MeshId
-							TextureId = SpecialMesh.TextureID
+							TextureId = SpecialMesh.TextureId
 						end
 					end
 
@@ -229,7 +232,7 @@ do
 			end
 		end
 	end
-
+	
 	local NewIndex = function(self, Index, Value)
 		self[Index] = Value
 	end
@@ -306,7 +309,6 @@ do
 
 									if not ( Blacklisted and Blacklisted.MeshId == MeshId and Blacklisted.TextureId == TextureId ) then
 										tableinsert(Aligns, {
-											LastPosition = Instance.Position,
 											Offset = Table.Offset,
 											Part0 = Parent,
 											Part1 = Instance
@@ -350,7 +352,6 @@ do
 								TextureId = TextureId
 							})
 							tableinsert(Aligns, {
-								LastPosition = HandleClone.Position,
 								Offset = CFrameidentity,
 								Part0 = Parent,
 								Part1 = HandleClone
@@ -529,7 +530,7 @@ do
 						local FirstPosition = Target.Position
 						local PredictionFling = Options.PredictionFling
 						local LastPosition = FirstPosition
-						local Timeout = osclock() + 1
+						local Timeout = osclock() + Options.Timeout or 1
 
 						if HumanoidRootPart then
 							while IsDescendantOf(Target, Workspace) and osclock() < Timeout do
@@ -566,23 +567,24 @@ do
 
 				HumanoidRootPart.AssemblyAngularVelocity = Vector3zero
 				HumanoidRootPart.AssemblyLinearVelocity = Vector3zero
-				
+
 				if OptionsHatDrop then
 					taskspawn(function()
 						WaitForChildOfClassAndName(Character, "LocalScript", "Animate").Enabled = false
-						
+
 						for Index, AnimationTrack in next, GetPlayingAnimationTracks(Humanoid) do
 							AnimationTrack:Stop()
 						end
+						
+						--LoadAnimation(Humanoid, Humanoid.RigType == R6 and R6Animation or R15Animation):Play(0)
 
-						LoadAnimation(Humanoid, Animation):Play(0)
-						
 						pcall(NewIndex, Workspace, "FallenPartsDestroyHeight", nan)
-						
+
 						local RootPartCFrame = RigHumanoidRootPart.CFrame
-						RootPartCFrame = CFramenew(RootPartCFrame.X, HatDropY, RootPartCFrame.Z)
+						RootPartCFrame = CFramenew(RootPartCFrame.X, HatDropY, RootPartCFrame.Z) * CFrame.Angles(0.3134,0,0)
 
 						while IsAlive do
+							Humanoid.Sit = true
 							HumanoidRootPart.AssemblyAngularVelocity = Vector3zero
 							HumanoidRootPart.AssemblyLinearVelocity = HatDropLinearVelocity
 							HumanoidRootPart.CFrame = RootPartCFrame
@@ -591,8 +593,8 @@ do
 						end
 					end)
 				elseif OptionsHideCharacter then
-					local RootPartCFrame = RigHumanoidRootPart.CFrame - Vector3new(0, 10, 0)
-					
+					local RootPartCFrame = RigHumanoidRootPart.CFrame - HideCharacterOffset
+
 					taskspawn(function()
 						while IsAlive do
 							HumanoidRootPart.AssemblyAngularVelocity = Vector3zero
@@ -607,31 +609,29 @@ do
 				end
 			end
 
-			if OptionsPermanentDeath then
-				if replicatesignal then
-					replicatesignal(ConnectDiedSignalBackend)
+			if OptionsPermanentDeath and replicatesignal then
+				replicatesignal(ConnectDiedSignalBackend)
 
-					taskwait(Players.RespawnTime + 0.1)
-				
-					Refitting = false
-					replicatesignal(Kill)
-				end
+				taskwait(Players.RespawnTime + 0.1)
+
+				Refitting = false
+				replicatesignal(Kill)
 			else
 				taskwait(OptionsBreakJointsDelay)
 			end
-			
-			ModelBreakJoints(Character)
 
+			ModelBreakJoints(Character)
+  
 			if Humanoid then
-				if replicatesignal then
+			  if replicatesignal then
 					replicatesignal(Humanoid.ServerBreakJoints)
 				end
 				ChangeState(Humanoid, Dead)
 				Wait(Humanoid.Died)
 			end
-			
+
 			IsAlive = false
-			
+
 			if OptionsHatDrop then
 				pcall(NewIndex, Workspace, "FallenPartsDestroyHeight", FallenPartsDestroyHeight)
 			end
@@ -641,18 +641,18 @@ do
 	local OnInputBegan = function(InputObject)
 		if InputObject.UserInputType == MouseButton1 then
 			local Target = Mouse.Target
-			
+
 			local HatFling = OptionsDefaultFlingOptions.HatFling
 			local ToolFling = OptionsDefaultFlingOptions.ToolFling
 
 			if HatFling and OptionsHatDrop then
 				local Part = type(HatFling) == "table" and GetHandleFromTable(HatFling)
-				
+
 				if not Part then
 					for Index, Child in GetChildren(Character) do
 						if IsA(Child, "Accoutrement") then
 							local Handle = FindFirstChildOfClassAndName(Child, "BasePart", "Handle")
-							
+
 							if Handle then
 								Part = Handle
 								break
@@ -679,35 +679,35 @@ do
 			elseif ToolFling then
 				local Backpack = FindFirstChildOfClass(LocalPlayer, "Backpack")
 				local Tool = nil
-				
+
 				if type(ToolFling) == "string" then
 					Tool = FindFirstChild(Backpack, ToolFling) or FindFirstChild(Character, ToolFling)
 				end
-				
+
 				if not Tool then
 					Tool = FindFirstChildOfClass(Backpack, "Tool") or FindFirstChildOfClass(Character, "Tool")
 				end
-				
+
 				if Tool then
 					local Handle = FindFirstChildOfClassAndName(Tool, "BasePart", "Handle") or FindFirstChildWhichIsA(Tool, "BasePart")
-					
+
 					if Handle then
 						UnequipTools(Humanoid)
 						taskwait()
 						EquipTool(Humanoid, Tool)
-						
+
 						while IsMouseButtonPressed(UserInputService, MouseButton1) do
 							if Handle.ReceiveAge == 0 then
 								Handle.AssemblyAngularVelocity = FlingVelocity
 								Handle.AssemblyLinearVelocity = FlingVelocity
 								Handle.CFrame = Mouse.Hit + AntiSleep
 							end
-							
+
 							taskwait()
 						end
-						
+
 						UnequipTools(Humanoid)
-						
+
 						Handle.AssemblyAngularVelocity = Vector3zero
 						Handle.AssemblyLinearVelocity = Vector3zero
 						Handle.CFrame = RigHumanoidRootPart.CFrame
@@ -747,9 +747,8 @@ do
 						Part0.AssemblyAngularVelocity = Vector3zero
 
 						local Position = Part1.Position
-						local LinearVelocity = ( Position - Table.LastPosition ) / DeltaTime * Axis
+						local LinearVelocity = Part1.AssemblyLinearVelocity
 						Part0.AssemblyLinearVelocity = Vector3new(LinearVelocity.X, Axis, LinearVelocity.Z)
-						Table.LastPosition = Position
 
 						Part0.CFrame = Part1.CFrame * Table.Offset + AntiSleep
 					end
@@ -861,7 +860,7 @@ do
 			RigHumanoid = Rig.Humanoid
 			RigHumanoidRootPart = Rig.HumanoidRootPart
 			Rig.Parent = Workspace
-
+			
 			if _G.part then
 				for i,v in pairs(_G.part) do
 					if typeof(v) == "Instance" then
@@ -943,7 +942,7 @@ do
 			if Character.Parent == Rig then
 				Character.Parent = Workspace
 			end
-			
+
 			if Humanoid then
 				ChangeState(Humanoid, Dead)
 			end
