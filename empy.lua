@@ -1,3 +1,4 @@
+
 -- Made by @emperrrr (Discord)
 -- Discord server: https://discord.gg/UJ7YtqadPJ
 
@@ -67,7 +68,7 @@ do
 	local SetCoreGuiEnabled = StarterGui.SetCoreGuiEnabled
 	local Workspace = FindFirstChildOfClass(game, "Workspace")
 	local FallenPartsDestroyHeight = Workspace.FallenPartsDestroyHeight
-	local HatDropY = FallenPartsDestroyHeight - 0.3
+	local HatDropY = FallenPartsDestroyHeight - 0.7
 	local FindFirstChildWhichIsA = game.FindFirstChildWhichIsA
 	local UserInputService = FindFirstChildOfClass(game, "UserInputService")
 	local InputBegan = UserInputService.InputBegan
@@ -576,15 +577,14 @@ do
 							AnimationTrack:Stop()
 						end
 						
-						--LoadAnimation(Humanoid, Humanoid.RigType == R6 and R6Animation or R15Animation):Play(0)
+						LoadAnimation(Humanoid, Humanoid.RigType == R6 and R6Animation or R15Animation):Play(0)
 
 						pcall(NewIndex, Workspace, "FallenPartsDestroyHeight", nan)
 
 						local RootPartCFrame = RigHumanoidRootPart.CFrame
-						RootPartCFrame = CFramenew(RootPartCFrame.X, HatDropY, RootPartCFrame.Z) * CFrame.Angles(0.3134,0,0)
+						RootPartCFrame = CFramenew(RootPartCFrame.X, HatDropY, RootPartCFrame.Z)
 
 						while IsAlive do
-							Humanoid.Sit = true
 							HumanoidRootPart.AssemblyAngularVelocity = Vector3zero
 							HumanoidRootPart.AssemblyLinearVelocity = HatDropLinearVelocity
 							HumanoidRootPart.CFrame = RootPartCFrame
