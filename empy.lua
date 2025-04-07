@@ -531,7 +531,7 @@ do
 						local FirstPosition = Target.Position
 						local PredictionFling = Options.PredictionFling
 						local LastPosition = FirstPosition
-						local Timeout = osclock() + Options.Timeout or 1
+						local Timeout = osclock() + 1
 
 						if HumanoidRootPart then
 							while IsDescendantOf(Target, Workspace) and osclock() < Timeout do
