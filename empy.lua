@@ -1,12 +1,12 @@
 
 -- Made by @emperrrr (Discord)
--- Discord server: https://discord.gg/UJ7YtqadPJ
 
 local config = _G.Config or {}
 
 local HatCollide = config.HatCollide or false
 local ReClaim = config.ReClaim or false
 local HideChar = config.HideCharacter or false
+local CustomHat = config.CustomHat or false
 
 do
 	local Accessories = {}
@@ -966,7 +966,11 @@ do
 	end
 end
 
-local hatlist = {
+local hatlist
+if CustomHat then
+	hatlist = {}
+else
+hatlist = {
 	--{ MeshId = "", Name = "", Offset = CFrame.identity, TextureId = "" },
 
 	--{ MeshId = "3030546036", Name = "Right Arm", Offset = CFrame.Angles(-1.6144, -math.pi/2, 0) * CFrame.new(0.125, 0.3, 0), TextureId = "3443321249" },
@@ -1030,6 +1034,9 @@ local hatlist = {
 	{ MeshId = "4819720316", Name = "Torso" , Offset = CFrame.Angles(0, 0, -0.25), TextureId = "4819722776" },
 
 }
+end
+
+
 
 
 if _G.accessory then
