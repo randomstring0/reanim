@@ -576,7 +576,7 @@ do
 						for Index, AnimationTrack in next, GetPlayingAnimationTracks(Humanoid) do
 							AnimationTrack:Stop()
 						end
-						
+
 						LoadAnimation(Humanoid, Humanoid.RigType == R6 and R6Animation or R15Animation):Play(0)
 
 						pcall(NewIndex, Workspace, "FallenPartsDestroyHeight", nan)
@@ -746,8 +746,7 @@ do
 
 						Part0.AssemblyAngularVelocity = Vector3zero
 
-						local Position = Part1.Position
-						local LinearVelocity = Part1.AssemblyLinearVelocity
+						local LinearVelocity = Part1.AssemblyLinearVelocity * Axis
 						Part0.AssemblyLinearVelocity = Vector3new(LinearVelocity.X, Axis, LinearVelocity.Z)
 
 						Part0.CFrame = Part1.CFrame * Table.Offset + AntiSleep
@@ -764,17 +763,17 @@ do
 				end
 			end
 		end
-
 		if not OptionsSetCharacter and Humanoid then
 			Move(RigHumanoid, Humanoid.MoveDirection)
 			RigHumanoid.Jump = Humanoid.Jump
 		end
-
+		--[[
 		if IsRegistered then
 			SetCore(StarterGui, "ResetButtonCallback", BindableEvent)
 		else
 			IsRegistered = pcall(SetCore, StarterGui, "ResetButtonCallback", BindableEvent)
 		end
+		]]
 	end
 
 	local OnPreRender = function()
@@ -912,6 +911,21 @@ do
 				tableinsert(RBXScriptConnections, Connect(PreSimulation, OnPreSimulation))
 			end
 
+			IsRegistered = pcall(SetCore, StarterGui, "ResetButtonCallback", BindableEvent)
+			
+			if not IsRegistered then
+				taskspawn(function()
+					for Index = 1, 7 do
+						if not IsRegistered then
+							IsRegistered = pcall(SetCore, StarterGui, "ResetButtonCallback", BindableEvent)
+							taskwait()
+						else
+							break
+						end
+					end
+				end)
+			end
+			
 			return {
 				BindableEvent = BindableEvent,
 				Fling = Fling,
