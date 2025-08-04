@@ -1020,6 +1020,8 @@ hatlist = {
 	{ MeshId = "117287001096396", Name = "Left Leg", Offset = CFrame.new(), TextureId = "120169691545791" },
 	{ MeshId = "125405780718494", Name = "Right Leg", Offset = CFrame.Angles(0, 0, math.pi/2), TextureId = "136752500636691" },
 	{ MeshId = "125405780718494", Name = "Left Leg", Offset = CFrame.Angles(0, 0, math.pi/2), TextureId = "136752500636691" },
+	{ MeshId = "125405780718494", Name = "Right Arm", Offset = CFrame.Angles(0, 0, math.pi/2), TextureId = "136752500636691" },
+	{ MeshId = "125405780718494", Name = "Left Arm", Offset = CFrame.Angles(0, 0, math.pi/2), TextureId = "136752500636691" },
 	{ MeshId = "126825022897778", Name = "Torso", Offset = CFrame.new(), TextureId = "" },
 	{ MeshId = "", Name = "Left Leg", Offset = CFrame.Angles(0, 0, math.pi/2), TextureId = "73798034827573" },
 	{ MeshId = "", Name = "Right Leg", Offset = CFrame.Angles(0, 0, math.pi/2), TextureId = "73798034827573" },
