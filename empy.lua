@@ -1,4 +1,3 @@
-
 -- Made by @emperrrr (Discord)
 
 local config = _G.Config or {}
@@ -181,7 +180,7 @@ do
 	local Vector3new = Vector3.new
 	local FlingVelocity = Vector3new(16384, 16384, 16384)
 	local HatDropLinearVelocity = Vector3new(0, 27, 0)
-	local HideCharacterOffset = Vector3new(0, 30, 0)
+	local HideCharacterOffset = Vector3new(0, 20, 0)
 	local Vector3one = Vector3.one
 	local Vector3xzAxis = Vector3new(1, 0, 1)
 	local Vector3zero = Vector3.zero
@@ -858,7 +857,6 @@ do
 			Rig.Name = LocalPlayer.Name
 			RigHumanoid = Rig.Humanoid
 			RigHumanoidRootPart = Rig.HumanoidRootPart
-			Rig.Parent = Workspace
 			
 			if _G.part then
 				for i,v in pairs(_G.part) do
@@ -889,7 +887,8 @@ do
 			if OptionsClickFling then
 				tableinsert(RBXScriptConnections, Connect(InputBegan, OnInputBegan))
 			end
-
+			
+			Rig.Parent = Workspace
 			local Character = LocalPlayer.Character
 
 			if Character then
