@@ -1803,7 +1803,9 @@ local reanimate=function()
 		getCamCF=getCamCF,
 		isFirstPerson=isFirstPerson,
 		setHipHeight=setHipHeight,
-		characters=characters
+		characters=characters,
+		refreshrayfilter=refreshrayfilter,
+		setCameraMoveable=setCameraMoveable
 	}
 end
 
