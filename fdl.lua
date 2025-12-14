@@ -1803,10 +1803,8 @@ local reanimate=function()
 		getCamCF=getCamCF,
 		isFirstPerson=isFirstPerson,
 		setHipHeight=setHipHeight,
-		characters=characters,
-		refreshrayfilter=refreshrayfilter,
-		setCameraMoveable=setCameraMoveable
+		characters=characters
 	}
 end
 
-return {reanimate=reanimate,stopreanimate=stopreanimate,isreanimate=isreanimate}
+return {mouse=mouse,reanimate=reanimate,stopreanimate=stopreanimate,isreanimate=isreanimate,cfMul=cfMul,gp=gp,rs=rs,insSet=insSet,insGet=insGet}
