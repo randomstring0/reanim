@@ -1802,7 +1802,8 @@ local reanimate=function()
 		getVel=getVel,
 		getCamCF=getCamCF,
 		isFirstPerson=isFirstPerson,
-		setHipHeight=setHipHeight
+		setHipHeight=setHipHeight,
+		characters=characters
 	}
 end
 
