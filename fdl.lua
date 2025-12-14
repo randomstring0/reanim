@@ -184,6 +184,7 @@ local accessorylimbs = {
     {meshid="18640901641",textureid="18640901676",C0=cf_0,Name="Right Leg"},
     {meshid="18640914129",textureid="18640914168",C0=cf_0,Name="Right Arm"},
     {meshid="18640901641",textureid="18640901676",C0=cf_0,Name="Left Leg"},
+    {meshid="104613079991268",textureid="",C0=cf_0,Name="Torso"},
 }
 
 local gp=function(p,n,cl)
