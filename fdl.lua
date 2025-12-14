@@ -19,6 +19,7 @@ local tclone=table.clone
 local tfind=table.find
 local vmagnitude=vector.magnitude 
 local vnormalize=vector.normalize 
+local pi=math.pi
 
 --the script doesnt have to read global varaibles every time to get them
 --why not have them saved in local varaibles for faster access times
