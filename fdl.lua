@@ -229,7 +229,7 @@ end
 local emptyfunction=function() end
 local isreanimate=function() return c end
 
-local config=Configuration or {}
+local config=getgenv().Configuration or {}
 
 local allowshiftlock=config.allowshiftlock or false
 local ctrltp=config.ctrltp or false
