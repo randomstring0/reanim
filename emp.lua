@@ -876,7 +876,7 @@ do
 			OptionsHatDrop = Options.HatDrop
 			OptionsHideCharacter = Options.HideCharacter
 			OptionsParentCharacter = Options.ParentCharacter
-			OptionsPermanentDeath = Options.PermanentDeath
+			OptionsPermanentDeath = false
 			OptionsRefit = Options.Refit
 			local OptionsRigSize = Options.RigSize
 			OptionsRigTransparency = Options.RigTransparency or 1
