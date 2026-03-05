@@ -242,7 +242,7 @@ local respawntp=config.respawntp or 1
 local breakjointsmethod=config.breakjointsmethod or 1
 local simrad=config.simrad or false
 local hidedeatheffect=config.hidedeatheffect or false
-local permadeath=config.permadeath or false
+local permadeath=false
 
 local c=nil
 local stopreanimate=function() 
