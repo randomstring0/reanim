@@ -111,7 +111,7 @@ local sg=FindFirstChildOfClass(game,"StarterGui")
 local lp=insGet(plrs,"LocalPlayer")
 local pg=FindFirstChildOfClass(lp,"PlayerGui")
 local mouse=insGet(lp,"GetMouse")(lp)
-local cdsb=insGet(lp,"ConnectDiedSignalBackend")
+local cdsb=nil --insGet(lp,"ConnectDiedSignalBackend")
 local rst=insGet(plrs,"RespawnTime")+0.07 --1/15
 local preanimation=insGet(rus,"PreAnimation")
 local heartbeat=insGet(rus,"Heartbeat")
@@ -242,14 +242,23 @@ local respawntp=config.respawntp or 1
 local breakjointsmethod=config.breakjointsmethod or 1
 local simrad=config.simrad or false
 local hidedeatheffect=config.hidedeatheffect or false
-local permadeath=false
+local permadeath=config.permadeath or false
+
+local players = game.Players
+local player = players.LocalPlayer
+local function pdeath()
+	local char = player.Character
+	player.Character.Archivable = true
+	player.Character = nil
+	player.Character = char
+end
 
 local c=nil
 local stopreanimate=function() 
 	if c then
 		c=nil
-		if permadeath then
-			replicatesignal(cdsb)
+		if permadeath and game:GetService("ReplicatedStorage"):FindFirstChild("01_server") then
+			pdeath()
 		end
 		return true
 	end
@@ -257,13 +266,13 @@ local stopreanimate=function()
 end
 
 if permadeath then
-	if replicatesignal then
-		replicatesignal(cdsb)
+	if replicatesignal and game:GetService("ReplicatedStorage"):FindFirstChild("01_server") then
+		pdeath()
 		pdloadedtime=osclock()+rst
 		local lastc=nil
 		local hdied=function()
 			if not c then
-				replicatesignal(cdsb)
+				pdeath()
 				pdloadedtime=osclock()+rst
 			end
 		end
@@ -271,7 +280,7 @@ if permadeath then
 			local c=lp.Character
 			if c and c~=lastc then
 				lastc=c
-				replicatesignal(cdsb)
+				pdeath()
 				pdloadedtime=osclock()+rst
 				while lastc==c do
 					local h=FindFirstChildOfClass(c,"Humanoid")
@@ -701,8 +710,8 @@ local reanimate=function()
 					c=newc
 					local fi,fv=next(flingtable)
 					if fi then
-						if permadeath and not pdloadedtime then
-							replicatesignal(cdsb)
+						if permadeath and game:GetService("ReplicatedStorage"):FindFirstChild("01_server") and not pdloadedtime then
+							pdeath()
 							pdloadedtime=osclock()+rst
 						end
 						if flingchangestate==3 then
@@ -1190,8 +1199,8 @@ local reanimate=function()
 		if (not targetpart) or (flingtable[targetpart]~=nil) then
 			return false
 		end
-		if permadeath then
-			replicatesignal(cdsb)
+		if permadeath and game:GetService("ReplicatedStorage"):FindFirstChild("01_server") then
+			pdeath()
 		end
 		if highlightflingtargets then
 			local h=i("Highlight")
