@@ -123,7 +123,7 @@ local rps=FindFirstChildOfClass(game,"ReplicatedStorage")
 local lp=insGet(plrs,"LocalPlayer")
 local pg=FindFirstChildOfClass(lp,"PlayerGui")
 local mouse=insGet(lp,"GetMouse")(lp)
-local cdsb=insGet(lp,"ConnectDiedSignalBackend")
+local cdsb=nil --insGet(lp,"ConnectDiedSignalBackend")
 local sa=insGet(lp,"StatsAvailable")
 local rst=insGet(plrs,"RespawnTime")+0.07 --1/15
 local preanimation=insGet(rus,"PreAnimation")
@@ -259,12 +259,12 @@ if permadeath then
 		if respawntp==4 then
 			mfling=false
 		end
-		replicatesignal(cdsb)
+		--replicatesignal(cdsb)
 		pdloadedtime=osclock()+rst
 		local lastc=nil
 		local hdied=function()
 			if not c then
-				replicatesignal(cdsb)
+				--replicatesignal(cdsb)
 				pdloadedtime=osclock()+rst
 			end
 		end
@@ -272,7 +272,7 @@ if permadeath then
 			local c=lp.Character
 			if c and c~=lastc then
 				lastc=c
-				replicatesignal(cdsb)
+				--replicatesignal(cdsb)
 				pdloadedtime=osclock()+rst
 				while lastc==c do
 					local h=FindFirstChildOfClass(c,"Humanoid")
@@ -293,7 +293,7 @@ local stopreanimate=function()
 	if c then
 		c=nil
 		if replicatesignal then
-			replicatesignal(cdsb)
+			--replicatesignal(cdsb)
 			if pd then
 				Disconnect(pd)
 			end
@@ -717,7 +717,7 @@ local reanimate=function()
 					local fi,fv=next(flingtable)
 					if fi then
 						if replicatesignal and not pdloadedtime then
-							replicatesignal(cdsb)
+							--replicatesignal(cdsb)
 							pdloadedtime=osclock()+rst
 						end
 						if flingchangestate==3 then
@@ -1214,7 +1214,7 @@ local reanimate=function()
 			return false
 		end
 		if replicatesignal then
-			replicatesignal(cdsb)
+			--replicatesignal(cdsb)
 		end
 		if highlightflingtargets then
 			local h=i("Highlight")
