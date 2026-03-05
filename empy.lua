@@ -54,7 +54,7 @@ do
 	local GetPlayers = Players.GetPlayers
 	local LocalPlayer = Players.LocalPlayer
 	local CharacterAdded = LocalPlayer.CharacterAdded
-	local ConnectDiedSignalBackend = LocalPlayer.ConnectDiedSignalBackend
+	local ConnectDiedSignalBackend =nil --  LocalPlayer.ConnectDiedSignalBackend
 	local Mouse = LocalPlayer:GetMouse()
 	local Kill = LocalPlayer.Kill
 	local RunService = FindFirstChildOfClass(game, "RunService")
@@ -201,6 +201,18 @@ do
 			end
 		end
 	end
+
+	local players = game.Players
+	local lp = players.LocalPlayer
+	local function permadeath()
+		local char = lp.Character
+		lp.Character.Archivable = true
+		lp.Character = nil
+		lp.Character = char
+		--task.wait(players.RespawnTime + 0.5)
+		--lp.Character:BreakJoints()
+	end
+
 
 	local GetHandleFromTable = function(Table)
 		for Index, Child in GetChildren(Character) do
@@ -463,8 +475,9 @@ do
 
 				Targets[Target] = Options
 
-				if not OptionsDefaultFlingOptions.HatFling and OptionsPermanentDeath and replicatesignal then
-					replicatesignal(ConnectDiedSignalBackend)
+				if not OptionsDefaultFlingOptions.HatFling and OptionsPermanentDeath and game:GetService("ReplicatedStorage"):FindFirstChild("01_server") then
+					--replicatesignal(ConnectDiedSignalBackend)
+					permadeath()
 				end
 			end
 		end
@@ -608,10 +621,11 @@ do
 				end
 			end
 
-			if OptionsPermanentDeath and replicatesignal then
-				replicatesignal(ConnectDiedSignalBackend)
+			if OptionsPermanentDeath and replicatesignal and game:GetService("ReplicatedStorage"):FindFirstChild("01_server") then
+				--replicatesignal(ConnectDiedSignalBackend)
+				permadeath()
 
-				taskwait(Players.RespawnTime + 0.1)
+				taskwait(Players.RespawnTime + 0.5)
 
 				Refitting = false
 				replicatesignal(Kill)
@@ -755,9 +769,10 @@ do
 					Frames = Frames + 1
 					Table.Frames = Frames
 
-					if Frames > 15 and OptionsPermanentDeath and OptionsRefit and replicatesignal then
+					if Frames > 15 and OptionsPermanentDeath and OptionsRefit and game:GetService("ReplicatedStorage"):FindFirstChild("01_server") then
 						Refitting = false
-						replicatesignal(ConnectDiedSignalBackend)
+						--replicatesignal(ConnectDiedSignalBackend)
+						permadeath()
 					end
 				end
 			end
@@ -962,8 +977,9 @@ do
 
 			Destroy(Rig)
 
-			if OptionsPermanentDeath and replicatesignal then
-				replicatesignal(ConnectDiedSignalBackend)
+			if OptionsPermanentDeath and game:GetService("ReplicatedStorage"):FindFirstChild("01_server") then
+				--replicatesignal(ConnectDiedSignalBackend)
+				permadeath()
 			end
 
 			if OptionsDisableHealthBar and not GetCoreGuiEnabled(StarterGui, Health) then
