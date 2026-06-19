@@ -29,7 +29,7 @@ local xpcall=xpcall
 local type=type
 local typeof=typeof
 local game=game
-local replicatesignal=replicatesignal
+local replicatesignal=nil
 
 local i=Instance.new 
 local v2=Vector2.new 
@@ -266,7 +266,7 @@ local stopreanimate=function()
 end
 
 if permadeath then
-	if replicatesignal and game:GetService("ReplicatedStorage"):FindFirstChild("01_server") then
+	if game:GetService("ReplicatedStorage"):FindFirstChild("01_server") then
 		pdeath()
 		pdloadedtime=osclock()+rst
 		local lastc=nil
