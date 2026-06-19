@@ -148,7 +148,7 @@ do
 
 	local Refitting = false
 
-	local replicatesignal = replicatesignal
+	local replicatesignal = nil
 
 	local Rig = nil
 	local RigHumanoid = nil
