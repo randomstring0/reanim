@@ -53,7 +53,7 @@ do
 	local CharacterAdded = LocalPlayer.CharacterAdded
 	local ConnectDiedSignalBackend = nil -- LocalPlayer.ConnectDiedSignalBackend
 	local Mouse = LocalPlayer:GetMouse()
-	local Kill = LocalPlayer.Kill
+	local Kill = nil
 	local RunService = FindFirstChildOfClass(game, "RunService")
 	local PostSimulation = RunService.PostSimulation
 	local PreRender = RunService.PreRender
@@ -648,14 +648,14 @@ do
 				UnequipTools(Humanoid)
 			end
 
-			if OptionsPermanentDeath and replicatesignal and game:GetService("ReplicatedStorage"):FindFirstChild("01_server") then
+			if OptionsPermanentDeath and game:GetService("ReplicatedStorage"):FindFirstChild("01_server") then
 				--replicatesignal(ConnectDiedSignalBackend)
 				permadeath()
 
 				taskwait(Players.RespawnTime + 0.5)
 
 				Refitting = false
-				replicatesignal(Kill)
+				--replicatesignal(Kill)
 			else
 				taskwait(OptionsBreakJointsDelay)
 			end
