@@ -637,7 +637,7 @@ do
   
 			if Humanoid then
 			  if replicatesignal then
-					replicatesignal(Humanoid.ServerBreakJoints)
+					--replicatesignal(Humanoid.ServerBreakJoints)
 				end
 				ChangeState(Humanoid, Dead)
 				Wait(Humanoid.Died)
