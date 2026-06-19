@@ -138,7 +138,7 @@ do
 	local OptionsSetCollisionGroup = nil
 	local OptionsSimulationRadius = nil
 	local OptionsTeleportRadius = nil
-	local OptionsUseServerBreakJoints
+	local OptionsUseServerBreakJoints = false
 
 	local osclock = os.clock
 
@@ -663,7 +663,7 @@ do
 			ModelBreakJoints(Character)
 
 			if replicatesignal and OptionsUseServerBreakJoints then
-				replicatesignal(Humanoid.ServerBreakJoints)
+				--replicatesignal(Humanoid.ServerBreakJoints)
 			end
 
 			ChangeState(Humanoid, Dead)
