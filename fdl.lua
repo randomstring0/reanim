@@ -830,9 +830,9 @@ local reanimate=function()
 					if breakjointsmethod==4 then
 						local h=FindFirstChildOfClass(newc,"Humanoid")
 						if h then
-							replicatesignal(insGet(h,"ServerBreakJoints"))
-						else
+							--replicatesignal(insGet(h,"ServerBreakJoints"))
 							insGet(newc,"BreakJoints")(newc)
+							insSet(h,"Health",0)
 						end
 					elseif breakjointsmethod==1 then
 						insGet(newc,"BreakJoints")(newc)
